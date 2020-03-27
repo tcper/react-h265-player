@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import './App.css';
-import ReactH265Player from './Player'
+import ReactH265Player from './ReactH265Player'
 
 function App() {
   const [playerRef, setPlayerRef] = useState(null);
