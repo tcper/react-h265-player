@@ -8,14 +8,6 @@ class ReactH265Player extends Component {
     height: this.props.height
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    const { width, height } = prevProps;
-    this.setState({
-      width,
-      height
-    });
-  }
-
   componentDidMount() {
     // console.log(this.ref.current);
     const {
