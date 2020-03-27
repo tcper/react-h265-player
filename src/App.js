@@ -1,23 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState }  from 'react';
 import './App.css';
+import ReactH265Player from './Player'
 
 function App() {
+  const [playerRef, setPlayerRef] = useState(null);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <ReactH265Player 
+          width="500" height="500"
+          url="h265_high.mp4"
+          bufferSize={512 * 1024}
+          isStream={false}
+          errorHandler={e => {
+            console.log("play error " + e.error + " status " + e.status + ".");
+            if (e.error === 1) {
+              // finish
+            }
+          }}
+          passRef={ref => setPlayerRef(ref)} />
+
+          <div>
+            <button onClick={() => {
+              playerRef.resume();
+            }}>play</button>
+            <button onClick={() => {
+              playerRef.pause();
+            }}>pause</button>
+            <button onClick={() => {
+              playerRef.stop()
+            }}>stop</button>
+          </div>
       </header>
     </div>
   );
